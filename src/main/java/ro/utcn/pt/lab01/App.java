@@ -11,11 +11,13 @@ public class App {
 		p1.insert(-10, 2);
 		p1.insert(-4, 6);
 		p1.insert(9, 0);
-
+		p1.insert(9, 1);
+		
 		p2.insert(15, 10);
-		p2.insert(5, 3);
-		p2.insert(9, 0);
+		p2.insert(5, 6);
+		p2.insert(9, 2);
 		p2.insert(5, 1);
+		p2.insert(4, 0);
 
 		p1.printPoly();
 		p2.printPoly();

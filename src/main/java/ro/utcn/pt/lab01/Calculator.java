@@ -9,7 +9,6 @@ public class Calculator {
 		Polynome pr = new Polynome();
 		Monom temp1 = p1.head;
 		Monom temp2 = p2.head;
-		Monom temp3 = pr.head;
 		int d = 0;
 
 		while(temp1 != null){
@@ -29,7 +28,7 @@ public class Calculator {
 			
 			temp2 = p2.head;
 			temp1 = temp1.next;
-			temp3 = temp3.next;
+			
 		}
 
 		temp1 = p1.head;
@@ -49,7 +48,7 @@ public class Calculator {
 			d =0; 
 			temp1 = p1.head;
 			temp2 = temp2.next;
-			temp3 = temp3.next;
+			
 		}
 
 		return pr;

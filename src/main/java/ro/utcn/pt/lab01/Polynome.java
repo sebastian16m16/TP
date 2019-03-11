@@ -39,7 +39,7 @@ public class Polynome {
 
 	public void arrangePoly() {
 		int x, y;
-		for (int i = 0; i < getPolySize() / 2; i++) {
+		for (int i = 0; i < getPolySize(); i++) {
 			Monom m = head;
 
 			while (m.next != null) {
@@ -75,15 +75,32 @@ public class Polynome {
 				}
 			} else if (m.degree == 1) {
 				if (m.coef < 0) {
-					System.out.print(m.coef + "x");
+					if(m.coef == -1){
+						System.out.print("-x");
+					}else{
+						System.out.print(m.coef + "x");
+					}					
 				} else {
-					System.out.print("+" + m.coef + "x");
+					if(m.coef == 1){
+						System.out.print("+x");
+					}else{
+						System.out.print("+" + m.coef + "x");
+					}					
 				}
 			} else {
 				if (m.coef < 0) {
-					System.out.print(m.coef + "x^" + m.degree);
+					if(m.coef == -1){
+						System.out.print("-x^" + m.degree);
+					}else{
+						System.out.print(m.coef + "x^" + m.degree);
+					}					
 				} else {
-					System.out.print("+" + m.coef + "x^" + m.degree);
+					if(m.coef == 1){
+						System.out.print("+x^" + m.degree);
+					}else{
+						System.out.print("+" + m.coef + "x^" + m.degree);
+					}
+					
 				}
 			}
 
@@ -98,15 +115,32 @@ public class Polynome {
 			}
 		} else if (m.degree == 1) {
 			if (m.coef < 0) {
-				System.out.print(m.coef + "x");
+				if(m.coef == -1){
+					System.out.print("-x");
+				}else{
+					System.out.print(m.coef + "x");
+				}					
 			} else {
-				System.out.print("+" + m.coef + "x");
+				if(m.coef == 1){
+					System.out.print("+x");
+				}else{
+					System.out.print("+" + m.coef + "x");
+				}					
 			}
 		} else {
 			if (m.coef < 0) {
-				System.out.print(m.coef + "x^" + m.degree);
+				if(m.coef == -1){
+					System.out.print("-x^" + m.degree);
+				}else{
+					System.out.print(m.coef + "x^" + m.degree);
+				}					
 			} else {
-				System.out.print("+" + m.coef + "x^" + m.degree);
+				if(m.coef == 1){
+					System.out.print("+x^" + m.degree);
+				}else{
+					System.out.print("+" + m.coef + "x^" + m.degree);
+				}
+				
 			}
 		}
 
