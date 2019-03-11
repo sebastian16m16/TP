@@ -5,7 +5,7 @@ public class Calculator {
 	
 
 	public Polynome add(Polynome p1, Polynome p2) {
-		
+		//Add
 		Polynome pr = new Polynome();
 		Monom temp1 = p1.head;
 		Monom temp2 = p2.head;
@@ -38,7 +38,7 @@ public class Calculator {
 			while(temp1 != null){
 				
 				if(temp1.degree == temp2.degree){
-					d = 1;
+					d = 1; 
 				}
 				temp1 = temp1.next;
 			}
