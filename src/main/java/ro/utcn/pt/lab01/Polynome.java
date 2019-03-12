@@ -26,6 +26,22 @@ public class Polynome {
 		}
 	}
 
+	public void delete(Monom current){
+		if(current == head){
+			head = current.next;
+			
+		}else{
+			Monom n1 = head;
+			Monom n = head;
+			while(n != current){
+				
+				n1 = n;
+				n = n.next;
+			}
+			n1.next = current.next;
+		}
+	}
+
 	public int getPolySize() {
 
 		Monom temp = head;
