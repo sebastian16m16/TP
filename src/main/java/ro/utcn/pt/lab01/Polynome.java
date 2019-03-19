@@ -4,10 +4,10 @@ public class Polynome {
 
 	Monom head;
 
-	public void insert(int coef, int degree) {
+	public void insert(float d, int degree) {
 
 		Monom monom = new Monom();
-		monom.coef = coef;
+		monom.coef = d;
 		monom.degree = degree;
 		monom.next = null;
 
@@ -27,18 +27,23 @@ public class Polynome {
 	}
 
 	public void delete(Monom current){
-		if(current == head){
+		if(current.coef == head.coef && current.degree == head.degree){
 			head = current.next;
-			
+			return;
 		}else{
-			Monom n1 = head;
+			Monom n1 = null;
 			Monom n = head;
-			while(n != current){
+			while(n.coef != current.coef || n.degree != current.degree){
 				
 				n1 = n;
 				n = n.next;
-			}
-			n1.next = current.next;
+				}
+			
+				if(n.coef == current.coef && n.degree == current.degree) {
+					n1.next = current.next;
+					return;
+				}
+			
 		}
 	}
 
@@ -54,7 +59,8 @@ public class Polynome {
 	}
 
 	public void arrangePoly() {
-		int x, y;
+		int x;
+		float y;
 		for (int i = 0; i < getPolySize(); i++) {
 			Monom m = head;
 
