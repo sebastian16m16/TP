@@ -1,6 +1,8 @@
 package ro.utcn.pt.lab01;
 
 import java.util.regex.*;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -8,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import java.io.File;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
@@ -53,11 +58,18 @@ public class MainFrame extends JFrame {
 	JButton integrBtn1 = new JButton("INTEGRATE P1");
 	JButton derivBtn2 = new JButton("DERIVATE P2");
 	JButton integrBtn2 = new JButton("INTEGRATE P2");
+	
+	
+	
+	// ImageIcon image1 = new ImageIcon(getClass().getResource("imag/polynom.png"));
+	
+	
 
 	JLabel l1 = new JLabel("P1: ");
 	JLabel l2 = new JLabel("P2: ");
 	JLabel l3 = new JLabel("RESULT: ");
-	JLabel explain = new JLabel("(For the Derivative/Integration functions)");
+	// JLabel image = new JLabel(image1);
+
 
 	//SET FONT
 	
@@ -69,7 +81,7 @@ public class MainFrame extends JFrame {
 	l1.setFont(font);
 	l2.setFont(font);
 	l3.setFont(font);
-	explain.setFont(font);
+	
 
 	addBtn.setFont(font);
 	subBtn.setFont(font);
@@ -120,6 +132,9 @@ public class MainFrame extends JFrame {
 	add(derivBtn1, constraints);
 	constraints.gridx = 30;
 	add(integrBtn1, constraints);
+	constraints.gridx = 25;
+	constraints.gridy = 15;
+	// add(image, constraints);
 	
 	
 
