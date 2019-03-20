@@ -1,5 +1,6 @@
 package ro.utcn.pt.lab01;
 
+import java.util.regex.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,8 +49,10 @@ public class MainFrame extends JFrame {
 	JButton subBtn = new JButton("SUB");
 	JButton mulBtn = new JButton("MUL");
 	JButton divBtn = new JButton("DIV");
-	JButton derivBtn = new JButton("DERIVATE");
-	JButton integrBtn = new JButton("INTEGRATION");
+	JButton derivBtn1 = new JButton("DERIVATE P1");
+	JButton integrBtn1 = new JButton("INTEGRATE P1");
+	JButton derivBtn2 = new JButton("DERIVATE P2");
+	JButton integrBtn2 = new JButton("INTEGRATE P2");
 
 	JLabel l1 = new JLabel("P1: ");
 	JLabel l2 = new JLabel("P2: ");
@@ -72,8 +75,10 @@ public class MainFrame extends JFrame {
 	subBtn.setFont(font);
 	mulBtn.setFont(font);
 	divBtn.setFont(font);
-	derivBtn.setFont(font);
-	integrBtn.setFont(font);
+	derivBtn1.setFont(font);
+	integrBtn1.setFont(font);
+	derivBtn2.setFont(font);
+	integrBtn2.setFont(font);
 
 	//CONFIGURE LAYOUT
 
@@ -105,22 +110,185 @@ public class MainFrame extends JFrame {
 	add(mulBtn,constraints);
 	constraints.gridx = 15;
 	add(divBtn,constraints);
-	constraints.gridx = 20;
-	add(derivBtn,constraints);
 	constraints.gridx = 25;
-	add(integrBtn,constraints);
+	constraints.gridy = 5;
+	add(derivBtn2,constraints);
+	constraints.gridx = 30;
+	add(integrBtn2,constraints);
+	constraints.gridx = 25;
     constraints.gridy = 1;
-    add(explain, constraints);
+	add(derivBtn1, constraints);
+	constraints.gridx = 30;
+	add(integrBtn1, constraints);
 	
 	
 
 	//behavior
+
+	// ADD
 	addBtn.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
-			p1.append("Apasat!");
-		}
+			
+			Polynome pol1 = new Polynome();
+			Polynome pol2 = new Polynome();
 
+			 pol1 = getPolynomes(pol1, p1);
+			 pol2 = getPolynomes(pol2, p2);
+			
+			//Calculator Object
+			Calculator c = new Calculator();
+			
+			Polynome polr = c.add(pol1, pol2);
+
+			pr.setText(polr.printPolyString());
+		}
 	});
 
+	//SUB
+
+	subBtn.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			
+			Polynome pol1 = new Polynome();
+			Polynome pol2 = new Polynome();
+
+			 pol1 = getPolynomes(pol1, p1);
+			 pol2 = getPolynomes(pol2, p2);
+			
+			//Calculator Object
+			Calculator c = new Calculator();
+			
+			Polynome polr = c.sub(pol1, pol2);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
+
+	//mul
+
+	mulBtn.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			
+			Polynome pol1 = new Polynome();
+			Polynome pol2 = new Polynome();
+
+			 pol1 = getPolynomes(pol1, p1);
+			 pol2 = getPolynomes(pol2, p2);
+			
+			//Calculator Object
+			Calculator c = new Calculator();
+			
+			Polynome polr = c.mul(pol1, pol2);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
+
+	//div
+
+	divBtn.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			
+			Polynome pol1 = new Polynome();
+			Polynome pol2 = new Polynome();
+
+			 pol1 = getPolynomes(pol1, p1);
+			 pol2 = getPolynomes(pol2, p2);
+			
+			//Calculator Object
+			Calculator c = new Calculator();
+			
+			Polynome polr = c.div(pol1, pol2);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
+	
+	//DERIV P1
+
+	derivBtn1.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			Polynome pol1 = new Polynome();
+
+			pol1 = getPolynomes(pol1, p1);
+
+			//Calculator object
+			Calculator c = new Calculator();
+			//Derivate
+			Polynome polr = c.deriv(pol1);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
+
+	//DERIV P2
+
+	derivBtn2.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			Polynome pol1 = new Polynome();
+
+			pol1 = getPolynomes(pol1, p2);
+
+			//Calculator object
+			Calculator c = new Calculator();
+			//Derivate
+			Polynome polr = c.deriv(pol1);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
+
+	//INTEGR P1
+
+	integrBtn1.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			Polynome pol1 = new Polynome();
+
+			pol1 = getPolynomes(pol1, p1);
+
+			//Calculator object
+			Calculator c = new Calculator();
+			//Derivate
+			Polynome polr = c.integr(pol1);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
+
+	//INTEGR P2
+
+	integrBtn2.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			Polynome pol1 = new Polynome();
+
+			pol1 = getPolynomes(pol1, p2);
+
+			//Calculator object
+			Calculator c = new Calculator();
+			//Derivate
+			Polynome polr = c.integr(pol1);
+
+			pr.setText(polr.printPolyString());
+		}
+	});
 }
+
+	public Polynome getPolynomes(Polynome pol1, JTextField p1){
+		
+		//Get polynomes as STRING
+		String pn1 = p1.getText();		
+
+		//Create polynomes by monoms
+		String[] partsP1 = pn1.split("(?=\\+|\\-)");		
+	
+		Pattern p = Pattern.compile("([\\d|\\-d]+)x\\^([\\d|\\-\\d]+)");
+	
+		//add monoms to polynomials
+		for(String part1 : partsP1){
+			  Matcher m = p.matcher(part1);
+			   m.find();
+				pol1.insert(Float.parseFloat(m.group(1)), Integer.parseInt(m.group(2)));        
+		}
+		return pol1;
+	}
 }

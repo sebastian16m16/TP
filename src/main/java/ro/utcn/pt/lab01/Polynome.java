@@ -83,6 +83,7 @@ public class Polynome {
 
 	public void printPoly() {
 
+	
 		arrangePoly();
 
 		Monom m = head;
@@ -168,6 +169,97 @@ public class Polynome {
 
 		System.out.println();
 
+	}
+
+	public String printPolyString() {
+
+		String rez = "";
+		arrangePoly();
+
+		Monom m = head;
+
+		while (m.next != null) {
+
+			if (m.degree == 0) {
+				if (m.coef < 0) {
+					rez = rez.concat(Float.toString(m.coef));
+				} else {
+					rez = rez.concat("+" + Float.toString(m.coef));
+				}
+			} else if (m.degree == 1) {
+				if (m.coef < 0) {
+					if(m.coef == -1){
+						rez = rez.concat("-x");
+					}else{
+						rez = rez.concat(Float.toString(m.coef) + "x");
+					}					
+				} else {
+					if(m.coef == 1){
+						rez = rez.concat("+x");
+					}else{
+						rez = rez.concat("+" + Float.toString(m.coef) + "x");
+					}					
+				}
+			} else {
+				if (m.coef < 0) {
+					if(m.coef == -1){
+						rez = rez.concat("-x^" + Integer.toString(m.degree));
+					}else{
+						rez = rez.concat(Float.toString(m.coef) + "x^" + Integer.toString(m.degree));
+					}					
+				} else {
+					if(m.coef == 1){
+						rez = rez.concat("+x^" + Integer.toString(m.degree));
+					}else{
+						rez = rez.concat("+" + Float.toString(m.coef) + "x^" + Integer.toString(m.degree));
+					}
+					
+				}
+			}
+
+			m = m.next;
+		}
+
+		if (m.degree == 0) {
+			if (m.coef < 0) {
+				rez = rez.concat(Float.toString(m.coef));
+			} else {
+				rez = rez.concat("+" + Float.toString(m.coef));
+			}
+		} else if (m.degree == 1) {
+			if (m.coef < 0) {
+				if(m.coef == -1){
+					rez = rez.concat("-x");
+				}else{
+					rez = rez.concat(Float.toString(m.coef) + "x");
+				}					
+			} else {
+				if(m.coef == 1){
+					rez = rez.concat("+x");
+				}else{
+					rez = rez.concat("+" + Float.toString(m.coef) + "x");
+				}					
+			}
+		} else {
+			if (m.coef < 0) {
+				if(m.coef == -1){
+					rez = rez.concat("-x^" + Integer.toString(m.degree));
+				}else{
+					rez = rez.concat(Float.toString(m.coef) + "x^" + Integer.toString(m.degree));
+				}					
+			} else {
+				if(m.coef == 1){
+					rez = rez.concat("+x^" + Integer.toString(m.degree));
+				}else{
+					rez = rez.concat("+" + Float.toString(m.coef) + "x^" + Integer.toString(m.degree));
+				}
+				
+			}
+		}
+
+		
+		
+		return rez;
 	}
 
 }

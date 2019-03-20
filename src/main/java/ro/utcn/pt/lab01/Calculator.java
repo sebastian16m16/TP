@@ -123,7 +123,6 @@ public class Calculator {
 			temp1 = temp1.next;
 		}
 		
-		pr.printPoly();
 
 		//ARANJARE POLINOM
 		Monom temp3 = pr.head;
@@ -139,8 +138,6 @@ public class Calculator {
 			temp3 = temp3.next;
 		}
 
-		pr.printPoly();
-		
 		return pr;
 	}
 
