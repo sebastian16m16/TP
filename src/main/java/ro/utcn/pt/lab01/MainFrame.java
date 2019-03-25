@@ -212,10 +212,9 @@ public class MainFrame extends JFrame {
 			
 			//Calculator Object
 			Calculator c = new Calculator();
+			String rez = c.div1(pol1, pol2);
+			pr.setText(rez);
 			
-			Polynome polr = c.div(pol1, pol2);
-
-			pr.setText(polr.printPolyString());
 		}
 	});
 	

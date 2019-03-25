@@ -104,6 +104,15 @@ public class Calculator {
 			temp2 = temp2.next;
 			
 		}
+		Monom temp3 = ps.head;
+		
+		while(temp3 != null) {
+			if(temp3.coef == 0)
+				ps.delete(temp3);
+			temp3 = temp3.next;
+		}
+		ps.arrangePoly();
+		
 		return ps;
 	}
 
@@ -198,5 +207,41 @@ public class Calculator {
 		return pr;
 	}
 
+
+	public String div1(Polynome p1, Polynome p2){
+		Polynome pr = new Polynome();
+		Monom temp2 = p2.head;
+		Monom temp1 = p1.head;
+
+		float coef;
+		int degree;
+
+
+		while(temp1.degree >= temp2.degree){
+			pr.insert(temp1.coef / temp2.coef, temp1.degree-temp2.degree);
+			coef = temp1.coef / temp2.coef;
+			degree = temp1.degree-temp2.degree;
+
+			Polynome p_inter = new Polynome();
+			
+			while(temp2 != null){
+				p_inter.insert(temp2.coef * coef, temp2.degree + degree);
+				
+				temp2 = temp2.next;
+			}
+			p1 = sub(p1, p_inter);
+			temp1 = p1.head;
+			temp2 = p2.head;
+			if(temp1 == null)
+				break;
+		}
+		
+		if(p1.head != null)
+			return pr.printPolyString() + "+((" + p1.printPolyString() + 
+					")/(" + p2.printPolyString() + "))";
+		else
+			return pr.printPolyString();
+			
+	}
 	
 }
