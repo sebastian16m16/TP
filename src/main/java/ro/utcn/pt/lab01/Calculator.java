@@ -150,39 +150,6 @@ public class Calculator {
 		return pr;
 	}
 
-	public Polynome div(Polynome p1, Polynome p2) {
-		Polynome pr = new Polynome();
-		Monom temp1 = p1.head;
-		Monom temp2 = p2.head;
-
-		//INMULTIRE POLINOAME
-		while(temp1 != null){
-			while(temp2 != null){
-
-				pr.insert(temp1.coef / temp2.coef, temp1.degree - temp2.degree);
-				temp2 = temp2.next;
-			}
-			temp2 = p2.head;
-			temp1 = temp1.next;
-		}
-		
-		//ARANJARE POLINOM
-				Monom temp3 = pr.head;
-				while(temp3 != null){
-					Monom temp4 = temp3.next;
-					while(temp4 != null){
-						if(temp3.degree == temp4.degree){
-							temp3.coef = temp3.coef + temp4.coef;
-							pr.delete(temp4);
-						}
-						temp4 = temp4.next;
-					}
-					temp3 = temp3.next;
-				}
-		
-		return pr;
-	}
-
 	public Polynome deriv(Polynome p1){
 		Monom temp1 = p1.head;
 		Polynome pr = new Polynome();
@@ -207,8 +174,7 @@ public class Calculator {
 		return pr;
 	}
 
-
-	public String div1(Polynome p1, Polynome p2){
+	public String div(Polynome p1, Polynome p2){
 		Polynome pr = new Polynome();
 		Monom temp2 = p2.head;
 		Monom temp1 = p1.head;
