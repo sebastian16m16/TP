@@ -27,6 +27,9 @@ public class MainFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
+	public MainFrame() {
+		
+	}
 	public MainFrame(String title) {
 		super(title);
 	
@@ -291,6 +294,25 @@ public class MainFrame extends JFrame {
 		
 		//Get polynomes as STRING
 		String pn1 = p1.getText();		
+
+		//Create polynomes by monoms
+		String[] partsP1 = pn1.split("(?=\\+|\\-)");		
+	
+		Pattern p = Pattern.compile("([\\d|\\-d]+)x\\^([\\d|\\-\\d]+)");
+	
+		//add monoms to polynomials
+		for(String part1 : partsP1){
+			  Matcher m = p.matcher(part1);
+			   m.find();
+				pol1.insert(Float.parseFloat(m.group(1)), Integer.parseInt(m.group(2)));        
+		}
+		return pol1;
+	}
+	
+public Polynome getPolynomes1(Polynome pol1, String pn1){
+		
+		//Get polynomes as STRING
+				
 
 		//Create polynomes by monoms
 		String[] partsP1 = pn1.split("(?=\\+|\\-)");		
